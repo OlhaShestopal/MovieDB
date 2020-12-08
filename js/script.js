@@ -69,7 +69,7 @@ const makeChanges = () => {
 
 function createMovieList(films, parent) {
     parent.innerHTML = '';
-
+    sortArr(films);
     films.forEach((film, i) =>{
         parent.innerHTML += `
         <li class="promo__interactive-item">${i+1} ${film}
@@ -82,14 +82,13 @@ function createMovieList(films, parent) {
             btn.parentElement.remove();
             movieDB.movies.splice(i, 1);
 
-            createMovieList(movieDB.movies, movieList);
+            createMovieList(films, parent);
         })
     } )
 };
 
 makeChanges();
 deleteAvd(avd);
-sortArr(movieDB.movies);
 createMovieList(movieDB.movies, movieList);
 
 addForm.addEventListener('submit', (event) => {
